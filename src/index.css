@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Portfolio Design System - All colors MUST be HSL */
+
+@layer base {
+  :root {
+    /* Modern Portfolio Color Palette */
+    --background: 240 10% 98%;
+    --foreground: 240 10% 9%;
+    --background-gradient: linear-gradient(135deg, hsl(240 10% 98%) 0%, hsl(245 15% 96%) 100%);
+    
+    /* Primary Brand Colors */
+    --primary: 245 60% 55%;
+    --primary-glow: 245 70% 65%;
+    --primary-deep: 245 55% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Card and Surface Colors */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 15%;
+    --card-border: 240 10% 92%;
+
+    /* Secondary Colors */
+    --secondary: 240 15% 94%;
+    --secondary-foreground: 240 10% 20%;
+
+    /* Muted Colors */
+    --muted: 240 10% 95%;
+    --muted-foreground: 240 5% 60%;
+
+    /* Accent Colors */
+    --accent: 195 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 195 100% 75%;
+
+    /* Success Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-glow: 142 76% 46%;
+
+    /* Borders and Inputs */
+    --border: 240 10% 88%;
+    --input: 240 10% 95%;
+    --ring: 245 60% 55%;
+
+    /* Modern Design Elements */
+    --radius: 0.75rem;
+    --shadow-soft: 0 4px 20px -4px hsl(240 10% 9% / 0.1);
+    --shadow-medium: 0 10px 40px -8px hsl(240 10% 9% / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(245 15% 98% / 0.9));
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 240 10% 8%;
+    --foreground: 240 10% 95%;
+    --background-gradient: linear-gradient(135deg, hsl(240 10% 8%) 0%, hsl(245 15% 10%) 100%);
+
+    --card: 240 10% 12%;
+    --card-foreground: 240 10% 90%;
+    --card-border: 240 10% 20%;
+
+    --secondary: 240 10% 15%;
+    --secondary-foreground: 240 10% 85%;
+
+    --muted: 240 10% 18%;
+    --muted-foreground: 240 5% 65%;
+
+    --border: 240 10% 20%;
+    --input: 240 10% 15%;
+    
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --shadow-medium: 0 10px 40px -8px hsl(0 0% 0% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--background-gradient);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Hero Button Variants */
+  .btn-hero-primary {
+    @apply relative px-8 py-4 text-lg font-semibold text-white rounded-xl shadow-lg overflow-hidden;
+    background: var(--gradient-primary);
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-hero-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow), var(--shadow-medium);
+  }
+  
+  .btn-hero-secondary {
+    @apply relative px-8 py-4 text-lg font-semibold rounded-xl border-2 backdrop-blur-sm;
+    color: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+    background: hsl(var(--card) / 0.8);
+    transition: var(--transition-smooth);
+  }
+  
+  .btn-hero-secondary:hover {
+    transform: translateY(-2px);
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-medium);
+  }
+
+  /* Card Animations */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg;
+    transition: var(--transition-smooth);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+  }
+
+  /* Skill Badge */
+  .skill-badge {
+    @apply px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm;
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--card-border));
+    transition: var(--transition-fast);
+  }
+  
+  .skill-badge:hover {
+    background: var(--gradient-accent);
+    color: hsl(var(--accent-foreground));
+    transform: scale(1.05);
+  }
+
+  /* Section Spacing */
+  .section-padding {
+    @apply py-20 px-6;
+  }
+  
+  .container-max {
+    @apply max-w-6xl mx-auto;
+  }
+
+  /* Glass Effect */
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: hsl(var(--card) / 0.8);
+    border: 1px solid hsl(var(--card-border));
+  }
+}
+
+@layer utilities {
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
